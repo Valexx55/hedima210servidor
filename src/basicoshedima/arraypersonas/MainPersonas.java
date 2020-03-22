@@ -1,5 +1,7 @@
 package basicoshedima.arraypersonas;
 
+import java.util.Scanner;
+
 /**
  * 1. MOSTRAR EL MENÚ. ok. ¿Cuántas veces? --> Hasta que no dé a salir. Mínimo 1
  * --> do while 2. Habrá que leer la opción introducida por el usuario -->
@@ -31,6 +33,11 @@ public class MainPersonas {
 	 * así que acto de fé, de momento. Todos private y static. Opcional hacer
 	 * métodos, por supu.
 	 */
+	
+	/**
+	 *  Método que imprime por pantalla el menú. Ni recibe ni devuelve nada 
+	 *  (no produce ningún cálculo, sólo muestra, ni necesita ningún dato de entrada para llevar a cabo su tarea)
+	 */
 	private static void mostrarMenu() {
 
 		System.out.println("1. CREAR UN ARRAY DE PERSONAS");
@@ -41,43 +48,39 @@ public class MainPersonas {
 		System.out.println("6. BORRAR A UNA PERSONA DEL ARRAY POR SU NOMBRE");
 		System.out.println("7 SALIR.");
 		System.out.println("");// para que nos deje un salto en blanco
-		System.out.println("Introduzca opción \n");// lo de \n es imprimir un Intro (equivale a la línea anterior)
+		System.out.println("Introduzca opción: ");// lo de \n es imprimir un Intro (equivale a la línea anterior)
 	}
 
+	/**
+	 * Método que lee la opción introducida por teclado 
+	 * 
+	 * @return el número leído
+	 */
 	private static int leerOpcion() {
 		int opcion_introducida = 0;
-
-		// TODO Leer de teclado lo que introduce el usario y pasarlo a número. Vamos a
-		// suponer que siempre introduce un número
+		Scanner scanner = null;//variable que necesito para leer de teclado
+			
+			scanner = new Scanner(System.in);//
+			opcion_introducida = scanner.nextInt();//suponemos que introduce un número. no valildamos! (si mete una letra petaría y el programa acabaría de forma abrupta)
+				
 
 		return opcion_introducida;
 	}
 
+	
 	public static void main(String[] args) {
 
 		// 4 declaro el array
 		Persona[] array_personas = null;
 
-		// Lo primero que habrá que hacer es mostrar El menú. Esto lo podemos hacer en
-		// el main,
-		// o hacer una función aparte y llamarla. (leer indicaciones) //o poner todos
-		// los sysos en el main, como está más abajo
-		// mostrarMenu();
 
 		// 1 bucle
 		int opcion = 0;
 
 		do {
-
-			System.out.println("1. CREAR UN ARRAY DE PERSONAS");
-			System.out.println("2. INSERTAR UNA NUEVA PERSONA EN EL ARRAY");
-			System.out.println("3. MOSTRAR LAS PERSONAS QUE HAY EN EL ARRAY");
-			System.out.println("4. MOSTRAR EL NOMBRE Y LA EDAD DE A LA PERSONA DE MAYOR EDAD");
-			System.out.println("5. VACIAR EL ARRAY");
-			System.out.println("6. BORRAR A UNA PERSONA DEL ARRAY POR SU NOMBRE");
-			System.out.println("7. SALIR.");
-			System.out.println("");// para que nos deje un salto en blanco
-			System.out.println("Introduzca opción \n");// lo de \n es imprimir un Intro (equivale a la línea anterior)
+			
+			//1 mostramos el menú
+			mostrarMenu();
 			// 2 leerOpcion
 			opcion = leerOpcion();
 			// 3 casos: hacemos los caminos para cada elección del usuario
@@ -86,8 +89,34 @@ public class MainPersonas {
 				System.out.println("Quiere crear el array");
 
 				break;
-			//TODO continuar con el resto de casos e ir haciendo dentro de cada case, lo que toca! case 2, 3, ...
+
+			case 2:
+				System.out.println("Quiere insertar una persona");
+
+				break;
+			case 3:
+				System.out.println("Quiere mostar el array");
+
+				break;
+			case 4:
+				System.out.println("Quiere mostrar la persona de más edad");
+
+				break;
+			case 5:
+				System.out.println("Quiere vacíar el array");
+
+				break;
+			case 6:
+				System.out.println("Quiere borrar una persona por su nombre");
+
+				break;
+			case 7:
+				System.out.println("Quiere salir");
+
+				break;
+
 			default:
+				System.out.println("Opción no disponible");
 				break;
 			}
 
