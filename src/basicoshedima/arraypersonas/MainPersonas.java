@@ -87,7 +87,8 @@ public class MainPersonas {
 			switch (opcion) {
 			case 1:
 				System.out.println("Quiere crear el array");
-
+				array_personas = new Persona[5];
+				System.out.println("Creado el array con capacidad para 5 personas (0-4)");
 				break;
 
 			case 2:
@@ -104,6 +105,8 @@ public class MainPersonas {
 				break;
 			case 5:
 				System.out.println("Quiere vacíar el array");
+				array_personas = null;
+				System.out.println("array vaciado");//es un vaciado lógico. volvemos a inicializarlo
 
 				break;
 			case 6:
