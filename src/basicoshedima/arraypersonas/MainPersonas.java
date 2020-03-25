@@ -47,7 +47,7 @@ public class MainPersonas {
 		System.out.println("4. MOSTRAR EL NOMBRE Y LA EDAD DE A LA PERSONA DE MAYOR EDAD");
 		System.out.println("5. VACIAR EL ARRAY");
 		System.out.println("6. BORRAR A UNA PERSONA DEL ARRAY POR SU NOMBRE");
-		System.out.println("7 SALIR.");
+		System.out.println("7. SALIR.");
 		System.out.println("");// para que nos deje un salto en blanco
 		System.out.println("Introduzca opción: ");// lo de \n es imprimir un Intro (equivale a la línea anterior)
 	}
@@ -92,6 +92,13 @@ public class MainPersonas {
 		return persona;// última, un return de la primera
 
 	}
+	
+	private static int buscarPosicionMayoEdad (Persona[] array_personas)
+	{
+		int pos_mayor = 0;
+		
+		return pos_mayor;
+	}
 
 	public static void main(String[] args) {
 
@@ -115,6 +122,8 @@ public class MainPersonas {
 				System.out.println("\t Quiere crear el array \n ");// \t es para el tabulador
 				array_personas = new Persona[5];
 				System.out.println("\t Nuevo array creado con capacidad para 5 personas (0-4) \n");
+				//nuevo:
+				n_personas = 0; //por si aca crea un nuevo array, después de haberlo creado ya, inicializamos a 0 el contador de personas aquí también (en teoría sólo debería crear el array 1 vez, pero puede haber un usuario toca_huevos, que lo habrá siempre -nosotros mismo somos todos unos manazas-)
 				break;
 
 			case 2:
@@ -157,7 +166,29 @@ public class MainPersonas {
 				}
 				break;
 			case 4:
-				System.out.println("Quiere mostrar la persona de más edad");
+				System.out.println("\t Quiere mostrar la persona de más edad \n");
+				//antes de nada, vamos a ver si el array tiene algo donde buscar :)
+				if (n_personas > 0) {
+					//ahora deberemos buscar la persona de más edad. Hay que recorrer el array
+					//para ello, vamos buscando la persona de mayor edad, que es justo lo que necesitamos 
+					Persona persona_mayor = array_personas[0];//empezamos tomando como mayor el primero y vamos comparando
+					//for es lo que pega, pues hay que pasar por todos sin excepción para determinar el menor
+					for (int i = 1; i < n_personas; i++) {
+						if (array_personas[i].getEdad()>persona_mayor.getEdad())//si la persona actual es mayor
+						{
+							persona_mayor=array_personas[i];//me la guardo a la que es la nueva mayor!
+						}
+						
+					}//al salir de bucle sé que la variable persona_mayor tiene a la persona de mayor edad del array
+					System.out.println("\tPERSONA de MAS EDAD \n");
+					System.out.println("\t \t Nombre " + persona_mayor.getNombre());
+					System.out.println("\t \t Edad " + persona_mayor.getEdad() + "\n");//intro de separación par aque se vea más bonito
+
+					
+				} else {
+					System.out.println("\t No hay personas para buscar - introduzca primero - \n");
+				}
+				
 
 				break;
 			case 5:
