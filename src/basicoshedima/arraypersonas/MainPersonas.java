@@ -93,6 +93,18 @@ public class MainPersonas {
 
 	}
 	
+	private static String pedirNombreABuscar ()
+	{
+		Scanner scanner = null; // para leer de teclado
+		String nombre = null; 
+		
+			System.out.println("Introduzca nombre: ");
+			scanner = new Scanner(System.in);
+			nombre = scanner.next();
+			
+		return nombre;
+	}
+	
 	private static int buscarPosicionMayoEdad (Persona[] array_personas)
 	{
 		int pos_mayor = 0;
@@ -201,6 +213,57 @@ public class MainPersonas {
 				break;
 			case 6:
 				System.out.println("Quiere borrar una persona por su nombre");
+				//antes de nada, vamos a ver si el array tiene algo donde buscar :)
+				if (n_personas > 0) {
+					//ahora deberemos obtener el nombre de la persona
+					//para ello, hacemos un método aparte
+					String nombre_buscado = pedirNombreABuscar();
+					//y ahora recorremos el array buscando ese nombre. Bien hasta que lo encontremos o lleguemos al final
+					//pero al menos 1 vez. lo que toca es do-while
+					boolean encontrado = false;
+					int posicion = 0;
+					Persona paux = null;//variable auxiliar para almacenar temporalmente la persona en curso
+					
+					do {
+						paux = array_personas[posicion];
+						//comparamos 2 String. OJO que esto es nuevoe E IMPORTANTE 
+						//Al ser dos objetos (no int, char o tipos simples) hay que comparar usando el método equals. SIEMPRE se hará así
+						if (paux.getNombre().equals(nombre_buscado))//equals devuevel true si son iguales
+						{
+							encontrado=true;
+						} 
+						else {
+							posicion++;
+						}
+						
+						
+					} while ((!encontrado)&&(posicion<n_personas));
+					//ha podido concluir el bucle por alguna de las dos condiciones
+					//tenemos que discernir por cuál para determinar si se ha encontrado o no
+					if (encontrado)
+					{
+						//bien, debemos de quitar a esa persona y bajar el contador de n_personas
+						//la variable posición nos indica donde está la persona que queremos borrar
+						//así que vamos a correr las personas una posición hacia atrás desde la posición encontrada
+						//hasta el final y así "machacamos" el sitio del que queremos borrar
+						//esto mejor dibujarlo o depurarlo para terminar de entenderlo bien y poneros ejemplos 
+						
+						for (int i = posicion; i < (n_personas-1); i++) {
+							
+							array_personas[i] = array_personas[i+1];
+						}
+						n_personas--;
+						System.out.println("Persona encontrada en la posicion " + posicion + " eliminada");
+						
+					} else {
+						System.out.println("La persona introducida no existe");
+					}
+					
+					
+				} else {
+					System.out.println("\t No hay nombres para buscar - introduzca primero - \n");
+				}
+				
 
 				break;
 			case 7:
