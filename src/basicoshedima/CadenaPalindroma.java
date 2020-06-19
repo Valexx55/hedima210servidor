@@ -27,6 +27,11 @@ public class CadenaPalindroma {
 		return bd;
 	}
 
+	//.JAVA FUENTE
+	//.CLASS CÓDIGO COMPILADO BYTECODES
+	//.JAR / .ZIP Java Archive -- Agrupación de class - Paquete - Librería
+	//.WAR Web Archive - Aplicación WEB
+	//JSE Java Standard Edition
 	/**
 	 * Versión recursiva: en general algo es recursivo cuando en su definición
 	 * aparece él mismo concepto que estamos definiendo. Por ejemplo, una carpeta es
@@ -127,6 +132,29 @@ public class CadenaPalindroma {
 		} else {
 			System.out.println("FALSO");
 		}
+		
+		/*int num = 0;
+		switch (num) {
+		case 0:
+			
+			System.out.println("El número vale 0");
+			
+			
+			break;
+		
+		case 1:
+			
+			System.out.println("El número vale 1");
+			
+			
+			break;
+
+		default:
+			System.out.println("El número vale distinto de 0 y de 1");
+			
+			break;
+		}
+		*/
 	}
 
 }

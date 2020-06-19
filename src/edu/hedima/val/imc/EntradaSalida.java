@@ -30,11 +30,40 @@ public class EntradaSalida {
 		return altura;
 	}
 	
+	public static String obtenerNombre ()
+	{
+		String nombre = null;
+		Scanner scaner = null;
+		
+			
+			System.out.println("Introduce nombre:");
+			scaner = new Scanner(System.in);
+			nombre = scaner.next();
+			
+		return nombre;
+	}
+	
 	public static void mostrarIMC (double imc)
 	{
 		
 		TipoIMC tipo = TipoIMC.traduceIMC(imc);
 		System.out.println("SU IMC ES " + imc +" que es " + tipo);
+	}
+	
+	public static void mostrarIMC (double imc, String nombre)
+	{
+		
+		TipoIMC tipo = TipoIMC.traduceIMC(imc);
+		System.out.println(nombre + ", SU IMC ES " + imc +" que es " + tipo);
+	}
+	
+	public static void mostrarIMC (double imc, Persona p)
+	{
+		
+		TipoIMC tipo = TipoIMC.traduceIMC(imc);
+		System.out.println(p.getNombre() + ", SU IMC ES " + imc +" que es " + tipo);
+		System.out.println("Corresponde a " + p.getAltura() + "m " + p.getPeso() + " kg");
+		
 	}
 	
 }
