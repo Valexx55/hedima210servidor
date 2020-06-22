@@ -12,6 +12,7 @@ import java.util.Scanner;
  * @author vale
  *
  */
+//TODO --> Hacer una nueva opci�n que permita insertar ALUMNOS!
 
 public class MainPersonas {
 
@@ -43,11 +44,12 @@ public class MainPersonas {
 
 		System.out.println("1. CREAR UN ARRAY DE PERSONAS");
 		System.out.println("2. INSERTAR UNA NUEVA PERSONA EN EL ARRAY");
-		System.out.println("3. MOSTRAR LAS PERSONAS QUE HAY EN EL ARRAY");
-		System.out.println("4. MOSTRAR EL NOMBRE Y LA EDAD DE A LA PERSONA DE MAYOR EDAD");
-		System.out.println("5. VACIAR EL ARRAY");
-		System.out.println("6. BORRAR A UNA PERSONA DEL ARRAY POR SU NOMBRE");
-		System.out.println("7. SALIR.");
+		System.out.println("3. INSERTAR UN NUEVO ALUMNO EN EL ARRAY");
+		System.out.println("4. MOSTRAR LAS PERSONAS QUE HAY EN EL ARRAY");
+		System.out.println("5. MOSTRAR EL NOMBRE Y LA EDAD DE A LA PERSONA DE MAYOR EDAD");
+		System.out.println("6. VACIAR EL ARRAY");
+		System.out.println("7. BORRAR A UNA PERSONA DEL ARRAY POR SU NOMBRE");
+		System.out.println("8. SALIR.");
 		System.out.println("");// para que nos deje un salto en blanco
 		System.out.println("Introduzca opción: ");// lo de \n es imprimir un Intro (equivale a la línea anterior)
 	}
@@ -90,6 +92,29 @@ public class MainPersonas {
 		persona = new Persona(edad, nombre);// creamos una persona con los datos introducidos
 
 		return persona;// última, un return de la primera
+
+	}
+	
+	private static Alumno obtenerAlumno() {
+		Alumno alumno = null; // devuelvo una persona, así que primera línea, una variable del tipo devuelto
+		Scanner scanner = null; // para leer de teclado
+		int edad = 0; // variable auxiliar para alamcenar temporalmente la edad leída por teclado
+		String nombre = null;// ídem, para el nombre
+		int nota = 0;
+		
+		scanner = new Scanner(System.in);
+		System.out.println("Introduzca edad: ");
+		edad = scanner.nextInt();
+
+		System.out.println("Introduzca nombre: ");
+		nombre = scanner.next();
+		
+		System.out.println("Introduzca nota: ");
+		nota = scanner.nextInt();
+
+		alumno = new Alumno(nota, nombre, edad);// creamos una persona con los datos introducidos
+
+		return alumno;// última, un return de la primera
 
 	}
 	
@@ -161,7 +186,30 @@ public class MainPersonas {
 				}
 
 				break;
-			case 3:
+			  case 3:
+				System.out.println("\t Quiere insertar un alumno \n");
+				// lo primero es ver si el array está creado
+				if (array_personas != null) {
+					// lo segundo es ver si tengo hueco en el array. ello me empuja a ir llevando la
+					// cuenta de las personas que se han introduocido, para lo cual declaro un
+					// contador al inicio del main (n_personas)
+					if (n_personas < 5)// 5 podría ser una constante, luego lo mejoraremos.
+					{
+						// necesito los datos de una persona --> hago un método que me los dé
+						Alumno alumno_nuevo = obtenerAlumno();
+						// la persona tiene que ir en el array, ¿pero dónde? --> en n_personas !!
+						array_personas[n_personas] = alumno_nuevo;
+						// actualizamos el contador de personas,
+						n_personas = n_personas + 1;
+					} else {
+						System.out.println("\t No caben más personas en el array :S \n");
+					}
+				} else {
+					System.out.println("\t Debe primero crear el array - opcion 1 - \n");
+				}
+
+				break;
+			case 4:
 				System.out.println("\t Quiere mostar el array \n");
 				// simplemente hacemos un for desde 0 hasta n_personas
 				// primero, nos aseguramos que hay alguna persona que mostrar
@@ -170,14 +218,18 @@ public class MainPersonas {
 					for (int i = 0; i < n_personas; i++) {
 
 						System.out.println("\tPERSONA " + i);
-						System.out.println("\t \t Nombre " + array_personas[i].getNombre());
+						/*System.out.println("\t \t Nombre " + array_personas[i].getNombre());
 						System.out.println("\t \t Edad " + array_personas[i].getEdad() + "\n");//intro de separación par aque se vea más bonito
-					}
+			
+						*/
+						
+						array_personas[i].mostrarPersona();
+						}
 				} else {
 					System.out.println("\t No hay personas que mostrar - introduzca primero - \n");
 				}
 				break;
-			case 4:
+			case 5:
 				System.out.println("\t Quiere mostrar la persona de más edad \n");
 				//antes de nada, vamos a ver si el array tiene algo donde buscar :)
 				if (n_personas > 0) {
@@ -203,7 +255,7 @@ public class MainPersonas {
 				
 
 				break;
-			case 5:
+			case 6:
 				System.out.println("Quiere vacíar el array");
 				array_personas = null;
 				System.out.println("array vaciado");// es un vaciado lógico. volvemos a inicializarlo
@@ -211,7 +263,7 @@ public class MainPersonas {
 				n_personas = 0;
 
 				break;
-			case 6:
+			case 7:
 				System.out.println("Quiere borrar una persona por su nombre");
 				//antes de nada, vamos a ver si el array tiene algo donde buscar :)
 				if (n_personas > 0) {
@@ -266,7 +318,7 @@ public class MainPersonas {
 				
 
 				break;
-			case 7:
+			case 8:
 				System.out.println("Quiere salir");
 
 				break;

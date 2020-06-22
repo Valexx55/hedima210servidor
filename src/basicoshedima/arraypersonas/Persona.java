@@ -26,6 +26,11 @@ public class Persona {
 		this.nombre = nombre;
 	}
 	
+	public void mostrarPersona ()
+	{
+		System.out.println("Nombre = " + this.nombre + " Edad "+ this.edad);
+		
+	}
 	
 	
 
