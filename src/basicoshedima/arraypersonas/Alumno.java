@@ -38,5 +38,30 @@ public class Alumno extends Persona {
 				" NOTA a " + this.getNota());
 	}
 	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		
+		return "NOMBRE "+ this.getNombre() +
+				" EDAD a " + this.getEdad() + 
+				" NOTA a " + this.getNota();
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		boolean soniguales=false;
+		// TODO tengo que comparar dos alumnos
+		// uno this y el otro obj
+		Alumno a2 = (Alumno)obj;
+		
+		if ((this.getNota()==a2.getNota())&&(this.getEdad()==a2.getEdad())&&
+				(this.getNombre().contentEquals(a2.getNombre())))
+		{
+			soniguales=true;
+		}
+		
+		return soniguales; //super.equals(obj);
+	}
+	
 
 }

@@ -7,9 +7,10 @@ public class Persona {
 	
 	public Persona() {
 		// TODO Auto-generated constructor stub
+		//constructor por defecto
 	}
 	public Persona(int edad, String nombre) {
-		super();
+		//super();
 		this.edad = edad;
 		this.nombre = nombre;
 	}

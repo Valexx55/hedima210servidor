@@ -1,5 +1,7 @@
 package basicoshedima.arraypersonas;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -137,10 +139,12 @@ public class MainPersonas {
 		return pos_mayor;
 	}
 
+	
+	//TODO Sustituir el Array de Personas por una List ;)
 	public static void main(String[] args) {
 
 		// 4 declaro el array
-		Persona[] array_personas = null;
+		ArrayList<Persona> array_personas = null;
 		int n_personas = 0; // número de personas introducidas y además nos vale para saber el hueco del
 							// array donde rán las nuevas personas
 
@@ -157,7 +161,7 @@ public class MainPersonas {
 			switch (opcion) {
 			case 1:
 				System.out.println("\t Quiere crear el array \n ");// \t es para el tabulador
-				array_personas = new Persona[5];
+				array_personas = new ArrayList<Persona>();
 				System.out.println("\t Nuevo array creado con capacidad para 5 personas (0-4) \n");
 				//nuevo:
 				n_personas = 0; //por si aca crea un nuevo array, después de haberlo creado ya, inicializamos a 0 el contador de personas aquí también (en teoría sólo debería crear el array 1 vez, pero puede haber un usuario toca_huevos, que lo habrá siempre -nosotros mismo somos todos unos manazas-)
@@ -175,7 +179,8 @@ public class MainPersonas {
 						// necesito los datos de una persona --> hago un método que me los dé
 						Persona persona_nueva = obtenerPersona();
 						// la persona tiene que ir en el array, ¿pero dónde? --> en n_personas !!
-						array_personas[n_personas] = persona_nueva;
+						//array_personas[n_personas] = persona_nueva;
+						array_personas.add(persona_nueva);
 						// actualizamos el contador de personas,
 						n_personas = n_personas + 1;
 					} else {
@@ -198,7 +203,8 @@ public class MainPersonas {
 						// necesito los datos de una persona --> hago un método que me los dé
 						Alumno alumno_nuevo = obtenerAlumno();
 						// la persona tiene que ir en el array, ¿pero dónde? --> en n_personas !!
-						array_personas[n_personas] = alumno_nuevo;
+						//array_personas[n_personas] = alumno_nuevo;
+						array_personas.add(alumno_nuevo);
 						// actualizamos el contador de personas,
 						n_personas = n_personas + 1;
 					} else {
@@ -215,7 +221,7 @@ public class MainPersonas {
 				// primero, nos aseguramos que hay alguna persona que mostrar
 				if (n_personas > 0) {
 					//y recorremos en tal caso, el array desde cero hasta n_personas
-					for (int i = 0; i < n_personas; i++) {
+					for (int i = 0; i < array_personas.size(); i++) {
 
 						System.out.println("\tPERSONA " + i);
 						/*System.out.println("\t \t Nombre " + array_personas[i].getNombre());
@@ -223,7 +229,10 @@ public class MainPersonas {
 			
 						*/
 						
-						array_personas[i].mostrarPersona();
+						//array_personas[i].mostrarPersona();
+						Persona persona_aux = array_personas.get(i);
+						
+						persona_aux.mostrarPersona();
 						}
 				} else {
 					System.out.println("\t No hay personas que mostrar - introduzca primero - \n");
@@ -235,12 +244,12 @@ public class MainPersonas {
 				if (n_personas > 0) {
 					//ahora deberemos buscar la persona de más edad. Hay que recorrer el array
 					//para ello, vamos buscando la persona de mayor edad, que es justo lo que necesitamos 
-					Persona persona_mayor = array_personas[0];//empezamos tomando como mayor el primero y vamos comparando
+					Persona persona_mayor =  array_personas.get(0);//array_personas[0];//empezamos tomando como mayor el primero y vamos comparando
 					//for es lo que pega, pues hay que pasar por todos sin excepción para determinar el menor
 					for (int i = 1; i < n_personas; i++) {
-						if (array_personas[i].getEdad()>persona_mayor.getEdad())//si la persona actual es mayor
+						if (array_personas.get(i).getEdad()>persona_mayor.getEdad())//si la persona actual es mayor
 						{
-							persona_mayor=array_personas[i];//me la guardo a la que es la nueva mayor!
+							persona_mayor=array_personas.get(i);//me la guardo a la que es la nueva mayor!
 						}
 						
 					}//al salir de bucle sé que la variable persona_mayor tiene a la persona de mayor edad del array
@@ -274,22 +283,22 @@ public class MainPersonas {
 					//pero al menos 1 vez. lo que toca es do-while
 					boolean encontrado = false;
 					int posicion = 0;
-					Persona paux = null;//variable auxiliar para almacenar temporalmente la persona en curso
+					Persona persona_actual = null;//variable auxiliar para almacenar temporalmente la persona en curso
 					
 					do {
-						paux = array_personas[posicion];
+						persona_actual = array_personas.get(posicion);
 						//comparamos 2 String. OJO que esto es nuevoe E IMPORTANTE 
 						//Al ser dos objetos (no int, char o tipos simples) hay que comparar usando el método equals. SIEMPRE se hará así
-						if (paux.getNombre().equals(nombre_buscado))//equals devuevel true si son iguales
+						if (persona_actual.getNombre().equals(nombre_buscado))//equals devuevel true si son iguales
 						{
 							encontrado=true;
 						} 
 						else {
 							posicion++;
 						}
-						
-						
+							
 					} while ((!encontrado)&&(posicion<n_personas));
+					
 					//ha podido concluir el bucle por alguna de las dos condiciones
 					//tenemos que discernir por cuál para determinar si se ha encontrado o no
 					if (encontrado)
@@ -300,11 +309,12 @@ public class MainPersonas {
 						//hasta el final y así "machacamos" el sitio del que queremos borrar
 						//esto mejor dibujarlo o depurarlo para terminar de entenderlo bien y poneros ejemplos 
 						
-						for (int i = posicion; i < (n_personas-1); i++) {
-							
-							array_personas[i] = array_personas[i+1];
-						}
-						n_personas--;
+						array_personas.remove(posicion);
+//						for (int i = posicion; i < (n_personas-1); i++) {
+//							
+//							array_personas[i] = array_personas[i+1];
+//						}
+//						n_personas--;
 						System.out.println("Persona encontrada en la posicion " + posicion + " eliminada");
 						
 					} else {
