@@ -1,7 +1,11 @@
 package basicoshedima.arraypersonas;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 
 public class MainHerencia {
 	
@@ -60,16 +64,38 @@ public class MainHerencia {
 //		} else {
 //			System.out.println("Son distintos");
 //		}
-		Alumno alumno4 = new Alumno(8, "Aleix", 19);
-		Alumno alumno5 = new Alumno(8, "Aleix", 19);
-		if (alumno4.equals(alumno5))
-		{
-			System.out.println("Son iguales el 4 y el 5");
-		} else {
-			System.out.println("Son distintos");
-		}
+//		Alumno alumno4 = new Alumno(8, "Aleix", 19);
+//		Alumno alumno5 = new Alumno(8, "Aleix", 19);
+//		if (alumno4.equals(alumno5))
+//		{
+//			System.out.println("Son iguales el 4 y el 5");
+//		} else {
+//			System.out.println("Son distintos");
+//		}
+		
+		List<Persona> lp = new LinkedList<Persona>();
+		CRUD objeto_crud = new Alumno(33);
+		
+		lp.add(new Persona());
+		
+		/**
+		 * 
+		 * 1) AÑADID UNA OPCIÓN AL PROGRAMA DE ARRAY PERSONAS QUE SEA
+		 * SÓLO MOSTRAR ALUMNOS Y QUE MUESTRE SÓLO A LOS ALUMNOS QUE ESTÉN 
+		 * EN A LISTA "mostrar alumnos"
+		 * 
+		 * 2) AÑADID UNA OPCIÓN AL PROGRAMA DE ARRAY PERSONAS QUE INFORME
+		 * DEL NÚMERO DE ALUMNOS EN LA LISTA "informar num alumnos"
+		 * 
+		 * 3) HACED UN MÉTODO QUE RECIBA UNA LILSTA DE PERSONAS Y ME DUEVUELVA
+		 * UNA SUBLISTA CON SÓLO LOS ALUMNOS DE LA LISTA DE PERSONAS
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 */
 		
 		
-	}
-
+}
 }

@@ -5,11 +5,14 @@ package basicoshedima.arraypersonas;
  * @author Jose
  *
  */
-public class Alumno extends Persona {
+public class Alumno extends Persona implements InterfazCocienteIlectual, Comparable<Alumno>{
 	
 	private int nota;
 	
 	public int getNota() {
+		
+	
+		
 		return this.nota;
 	}
 
@@ -46,6 +49,26 @@ public class Alumno extends Persona {
 				" EDAD a " + this.getEdad() + 
 				" NOTA a " + this.getNota();
 	}
+
+	@Override
+	public int calcularCocienteIntelectual() {
+		// TODO Auto-generated method stub
+		return 120;
+	}
+	
+	@Override
+	public Object read(int id) {
+		// TODO Auto-generated method stub
+		return super.read(id);
+	}
+
+	
+	@Override
+	public boolean create(Object o) {
+		// TODO Auto-generated method stub
+		return super.create(o);
+	}
+	
 	
 	@Override
 	public boolean equals(Object obj) {
@@ -61,6 +84,23 @@ public class Alumno extends Persona {
 		}
 		
 		return soniguales; //super.equals(obj);
+	}
+
+	//si NUM > 0 --> this es mayor
+	//si NUM == 0 --> son iguales
+	//si NUM <0 --> o es mayor
+	@Override
+	public int compareTo(Alumno o) {
+		int num = 0;
+		
+		if (this.getNota()> o.getNota()) {
+			num = 1;
+		} else if (this.getNota()< o.getEdad())
+		{
+			num = -1;
+		}
+		
+		return num;
 	}
 	
 

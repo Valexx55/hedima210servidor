@@ -1,6 +1,6 @@
 package basicoshedima.arraypersonas;
 
-public class Persona {
+public class Persona implements InterfazCocienteIlectual, CRUD{
 	
 	private int edad;
 	private String nombre;
@@ -32,6 +32,22 @@ public class Persona {
 		System.out.println("Nombre = " + this.nombre + " Edad "+ this.edad);
 		
 	}
+	@Override
+	public int calcularCocienteIntelectual() {
+		// TODO Auto-generated method stub
+		return 100;
+	}
+	@Override
+	public boolean create(Object o) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public Object read(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	
 	
 
