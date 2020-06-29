@@ -41,6 +41,25 @@ public class MainOrdenar {
 		Collections.sort(lista_alumnos);
 		System.out.println("Lista alumnos ORDENADA " + lista_alumnos);
 		
+	
+		
+		/**
+		 * ArrayList--> CLASE
+		 * List --> Interfaz
+		 * 
+		 * Diferencias entre una clase y una interfaz
+		 * 
+		 * - Interfaz NO la puedo instanciar. Es algo abstracto, que sólo define un 
+		 * conjunto de métodos, pero no los implementa
+		 * 
+		 * Si una clase implementa una interfaz "hereda" los métodos en ella definida
+		 * y hacer una versión de ellos
+		 * 
+		 * 
+		 * 
+		 * 
+		 */
+		
 		
 		
 		
