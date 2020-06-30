@@ -2,6 +2,7 @@ package basicoshedima.excepciones;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.Scanner;
@@ -22,6 +23,11 @@ import java.util.Scanner;
  */
 public class MainProperties {
 	
+	/*partiendo del ejercicio de el cuento, añadid otra propiedad al fichero de 
+	 * propiedades llamada salida que contenga el nombre del fichero donde se va a escribir el cuento.
+	 *  Es decir, ya no saldará por patnall 
+	sino que el cuento será escrito en un fichero, con el nombre dado en las properties */
+	
 	public static void escribirCuentoPorPantalla (String ruta_cuento)
 	{
 		Properties properties = null;
@@ -30,6 +36,26 @@ public class MainProperties {
 			properties.load(new FileInputStream(new File(ruta_cuento)));
 			System.out.println(properties.getProperty("start") + " " + properties.getProperty("body") + " "
 					+ properties.getProperty("end"));
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public static void escribirCuentoPorFichero (String ruta_cuento)
+	{
+		Properties properties = null;
+		try {
+			properties = new Properties();
+			properties.load(new FileInputStream(new File(ruta_cuento)));//cargo properties
+			String nombre_fichero_salida = properties.getProperty("salida");//leo la ruta de salida
+			FileWriter cuento_salida = new FileWriter(nombre_fichero_salida);//preparo fichero salida
+			//FileWriter cuento_salida = new FileWriter(nombre_fichero_salida, true);//preparo fichero salida
+			cuento_salida.write(properties.getProperty("start") + " " + properties.getProperty("body") + " "
+					+ properties.getProperty("end"));//escribo en él
+			cuento_salida.close();//cierro
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -69,7 +95,8 @@ public class MainProperties {
 		default:
 			break;
 		}
-		escribirCuentoPorPantalla(ruta_cuento);
+		//escribirCuentoPorPantalla(ruta_cuento);
+		escribirCuentoPorFichero(ruta_cuento);
 
 	}
 }
