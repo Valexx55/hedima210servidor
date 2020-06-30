@@ -29,7 +29,9 @@ public class MainProperties {
 		//String valor_saludo = properties.get("saludo");
 		try {
 			properties.load(new FileInputStream(new File(ruta_cuento)));
-			System.out.println(properties.getProperty("saludo"));
+			System.out.println(properties.getProperty("start"));
+			System.out.println(properties.getProperty("body"));
+			System.out.println(properties.getProperty("end"));
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
