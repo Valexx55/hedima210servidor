@@ -44,6 +44,9 @@ public class MainProperties {
 		Properties properties = new Properties();
 
 		int eleccion_idioma = 0;
+		
+	
+		
 		System.out.println("Elija el idioma del cuento");
 		System.out.println("Pulse 1 para Español");
 		System.out.println("Pulse 2 para Inglés");
