@@ -23,20 +23,21 @@ import java.util.Properties;
 public class MainProperties {
 
 	public static void main(String[] args) {
-//		String ruta_cuento = "cuento_es.properties";
-//		
-//		Properties properties = new Properties();
-//		//String valor_saludo = properties.get("saludo");
-//		try {
-//			properties.load(new FileInputStream(new File(ruta_cuento)));
-//			
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
+		String ruta_cuento = "cuento_es.properties";
+		
+		Properties properties = new Properties();
+		//String valor_saludo = properties.get("saludo");
+		try {
+			properties.load(new FileInputStream(new File(ruta_cuento)));
+			System.out.println(properties.getProperty("saludo"));
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 //		Integer.parseInt("koko");
-		String palabra = null;
-		palabra.length();
+//		String palabra = null;
+//		palabra.length();
 	}
 }
