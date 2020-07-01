@@ -22,7 +22,15 @@ import java.util.Scanner;
  *
  */
 public class MainProperties {
+	
+	//declaramos una constante siempre en mayúsuclas
+	//static a nivel de clase
+	//final es una constante --> no se va a poder modificar su valor
+	public static final String MENSAJE_ERROR = "El número debe ser entre 1 y 3";
+	public static final String MENSAJE_ERROR2 = "Introduce un número, malvado";
 
+	
+	
 	/*
 	 * partiendo del ejercicio de el cuento, añadid otra propiedad al fichero de
 	 * propiedades llamada salida que contenga el nombre del fichero donde se va a
@@ -31,6 +39,7 @@ public class MainProperties {
 	 */
 
 	public static void escribirCuentoPorPantalla(String ruta_cuento) {
+		//MENSAJE_ERROR = "torpedo";
 		Properties properties = null;
 		try {
 			properties = new Properties();
@@ -71,29 +80,41 @@ public class MainProperties {
 	 * opción por teclado que es un numero y tu tecleas un String?
 	 */
 
+	
+	private static void mostrarMenu ()
+	{
+		System.out.println("Elija el idioma del cuento");
+		System.out.println("Pulse 1 para Español");
+		System.out.println("Pulse 2 para Inglés");
+		System.out.println("Pulse 3 para Italiano");
+	}
+	
 	public static void main(String[] args) {
 		String ruta_cuento = "cuento_es.properties";
 		// Scanner reader = new Scanner(System.in);//scanner para leer por la entrada
 		// estándar
 		Properties properties = new Properties();
-		boolean entrada_numero = false;
+		boolean opcion_correcta = false;
 		int eleccion_idioma = 0;
 		String str_eleccion = null;
 		Scanner scanner = null;
 		do {
 
-			System.out.println("Elija el idioma del cuento");
-			System.out.println("Pulse 1 para Español");
-			System.out.println("Pulse 2 para Inglés");
-			System.out.println("Pulse 3 para Italiano");
+			mostrarMenu ();
 			try {
 				scanner = new Scanner(System.in);
-				eleccion_idioma = scanner.nextInt();
-				entrada_numero = true;
+				eleccion_idioma = scanner.nextInt();//vallidamos la entrada y controlamos que sea un número
+				if ((eleccion_idioma==1 || eleccion_idioma==2 ||eleccion_idioma==3))
+					{//y que esté entre 1 y 3
+					opcion_correcta = true;
+					} else {
+						System.out.println(MainProperties.MENSAJE_ERROR);
+					}
 			} catch (Exception e) {
-				System.out.println("Introduce un número, malvado");
+				System.out.println(MENSAJE_ERROR2);
+				//e.printStackTrace();
 			} 
-		} while (!entrada_numero);
+		} while (!opcion_correcta);
 
 		System.out.println(eleccion_idioma);
 

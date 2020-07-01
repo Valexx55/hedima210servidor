@@ -5,6 +5,8 @@ public class MainExcepciones {
 	
 	public static void main(String[] args) {
 		
+		System.out.println(MainProperties.MENSAJE_ERROR);
+		
 		try { //TÚ INTENTA ESTO
 			String[] array_palabras = new String[2];
 			array_palabras[2].length();
