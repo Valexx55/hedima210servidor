@@ -10,5 +10,14 @@ public class IMC {
 		
 		return imc;
 	}
+	
+	public static double calcula (Persona persona, boolean sexo)
+	{
+		double imc = 0;
+			
+			imc = (persona.getPeso()/(persona.getAltura()*persona.getAltura()));
+		
+		return imc;
+	}
 
 }

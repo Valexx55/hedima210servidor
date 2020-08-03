@@ -1,28 +1,31 @@
 package basicoshedima.arraypersonas;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
- * 1. MOSTRAR EL MENÚ. ok. ¿Cuántas veces? --> Hasta que no dé a salir. Mínimo 1
- * --> do while 2. Habrá que leer la opción introducida por el usuario -->
- * hacemos función : leerOpcion 3. En función de la opción, habrá que hacer
- * distintas cosas --> if () --> como son muchos, pega un swith case 4. Tendré
- * que declarar el array de personas.
+ * 1. MOSTRAR EL MENÚ. ok. ¿Cuántas veces? --> Hasta que no dé a salir.
+ * Mínimo 1 --> do while 2. Habrá que leer la opción introducida por el
+ * usuario --> hacemos función : leerOpcion 3. En función de la opción,
+ * habrá que hacer distintas cosas --> if () --> como son muchos, pega un swith
+ * case 4. Tendré que declarar el array de personas.
  * 
  * @author vale
  *
  */
+//TODO --> Hacer una nueva opci�n que permita insertar ALUMNOS!
 
 public class MainPersonas {
 
 	/**
 	 * LOS MÉTODOS PUEDEN SER PUBLIC O PRIVATE si son public, es que pueden
-	 * invocarse desde dentro y desde fuera de la Clase donde están definidos si son
-	 * private, es que sólo pueden invocarse desde dentro de la Clase donde están
-	 * definidos
+	 * invocarse desde dentro y desde fuera de la Clase donde están definidos si
+	 * son private, es que sólo pueden invocarse desde dentro de la Clase donde
+	 * están definidos
 	 * 
-	 * Cuando toque definir si un método es público o privado, habrá que tener más
-	 * criterio e información.
+	 * Cuando toque definir si un método es público o privado, habrá que tener
+	 * más criterio e información.
 	 * 
 	 * De momento, todos los métodos que defináis dentro de esta clase Main, que
 	 * sean private static
@@ -36,18 +39,22 @@ public class MainPersonas {
 
 	/**
 	 * Método que imprime por pantalla el menú. Ni recibe ni devuelve nada (no
-	 * produce ningún cálculo, sólo muestra, ni necesita ningún dato de entrada para
-	 * llevar a cabo su tarea)
+	 * produce ningún cálculo, sólo muestra, ni necesita ningún dato de entrada
+	 * para llevar a cabo su tarea)
 	 */
 	private static void mostrarMenu() {
 
 		System.out.println("1. CREAR UN ARRAY DE PERSONAS");
 		System.out.println("2. INSERTAR UNA NUEVA PERSONA EN EL ARRAY");
-		System.out.println("3. MOSTRAR LAS PERSONAS QUE HAY EN EL ARRAY");
-		System.out.println("4. MOSTRAR EL NOMBRE Y LA EDAD DE A LA PERSONA DE MAYOR EDAD");
-		System.out.println("5. VACIAR EL ARRAY");
-		System.out.println("6. BORRAR A UNA PERSONA DEL ARRAY POR SU NOMBRE");
-		System.out.println("7. SALIR.");
+		System.out.println("3. INSERTAR UN NUEVO ALUMNO EN EL ARRAY");
+		System.out.println("4. MOSTRAR LAS PERSONAS QUE HAY EN EL ARRAY");
+		System.out.println("5. MOSTRAR EL NOMBRE Y LA EDAD DE A LA PERSONA DE MAYOR EDAD");
+		System.out.println("6. VACIAR EL ARRAY");
+		System.out.println("7. BORRAR A UNA PERSONA DEL ARRAY POR SU NOMBRE");
+		System.out.println("8. INFORMAR NUM ALUMNOS");
+		System.out.println("9. MOSTRAR ALUMNOS.");
+		System.out.println("10. BUSCAR ALUMNOS.");
+		System.out.println("11. SALIR.");
 		System.out.println("");// para que nos deje un salto en blanco
 		System.out.println("Introduzca opción: ");// lo de \n es imprimir un Intro (equivale a la línea anterior)
 	}
@@ -92,30 +99,95 @@ public class MainPersonas {
 		return persona;// última, un return de la primera
 
 	}
-	
-	private static String pedirNombreABuscar ()
-	{
+
+	private static Alumno obtenerAlumno() {
+		Alumno alumno = null; // devuelvo una persona, así que primera línea, una variable del tipo devuelto
 		Scanner scanner = null; // para leer de teclado
-		String nombre = null; 
-		
-			System.out.println("Introduzca nombre: ");
-			scanner = new Scanner(System.in);
-			nombre = scanner.next();
-			
-		return nombre;
-	}
-	
-	private static int buscarPosicionMayoEdad (Persona[] array_personas)
-	{
-		int pos_mayor = 0;
-		
-		return pos_mayor;
+		int edad = 0; // variable auxiliar para alamcenar temporalmente la edad leída por teclado
+		String nombre = null;// ídem, para el nombre
+		int nota = 0;
+
+		scanner = new Scanner(System.in);
+		System.out.println("Introduzca edad: ");
+		edad = scanner.nextInt();
+
+		System.out.println("Introduzca nombre: ");
+		nombre = scanner.next();
+
+		System.out.println("Introduzca nota: ");
+		nota = scanner.nextInt();
+
+		alumno = new Alumno(nota, nombre, edad);// creamos una persona con los datos introducidos
+
+		return alumno;// última, un return de la primera
+
 	}
 
+	private static String pedirNombreABuscar() {
+		Scanner scanner = null; // para leer de teclado
+		String nombre = null;
+
+		System.out.println("Introduzca nombre: ");
+		scanner = new Scanner(System.in);
+		nombre = scanner.next();
+
+		return nombre;
+	}
+
+	private static Alumno pedirAlumnoABsucar ()
+	{
+		Alumno alumno = null;
+			
+			System.out.println("INTRODUZCA LOS DATOS DEL ALUMNO A BUSCAR");
+			alumno = obtenerAlumno();
+		
+		return alumno;
+	}
+	
+	private static int buscarPosicionMayoEdad(Persona[] array_personas) {
+		int pos_mayor = 0;
+
+		return pos_mayor;
+	}
+	
+	private static int buscarAlumnoEnLista (Alumno alumno_buscado, List<Persona> lista_personas)
+	{
+		int posicion = -1;
+		//VOLVEMOS A MENOS 10
+		//recorriendo el array de personas y comparando con el alumno buscado
+		
+		if (lista_personas!=null)
+		{
+			int posicion_actual = 0;
+			Persona persona_actual = null;
+			boolean encontrado = false;
+			
+			do {
+				
+				persona_actual = lista_personas.get(posicion_actual);
+				if (persona_actual instanceof Alumno)
+				{
+					if (alumno_buscado.equals(persona_actual))
+					{
+						encontrado=true;
+						posicion = posicion_actual;
+					}
+				}
+				posicion_actual++;
+				
+				
+			}while(posicion_actual<lista_personas.size()&&!encontrado);//no llegue al dinla de lista y no lo haya encontrado
+		}
+		
+		
+		return posicion;
+	}
+
+	// TODO Sustituir el Array de Personas por una List ;)
 	public static void main(String[] args) {
 
 		// 4 declaro el array
-		Persona[] array_personas = null;
+		ArrayList<Persona> array_personas = null;
 		int n_personas = 0; // número de personas introducidas y además nos vale para saber el hueco del
 							// array donde rán las nuevas personas
 
@@ -132,10 +204,13 @@ public class MainPersonas {
 			switch (opcion) {
 			case 1:
 				System.out.println("\t Quiere crear el array \n ");// \t es para el tabulador
-				array_personas = new Persona[5];
+				array_personas = new ArrayList<Persona>();
 				System.out.println("\t Nuevo array creado con capacidad para 5 personas (0-4) \n");
-				//nuevo:
-				n_personas = 0; //por si aca crea un nuevo array, después de haberlo creado ya, inicializamos a 0 el contador de personas aquí también (en teoría sólo debería crear el array 1 vez, pero puede haber un usuario toca_huevos, que lo habrá siempre -nosotros mismo somos todos unos manazas-)
+				// nuevo:
+				n_personas = 0; // por si aca crea un nuevo array, después de haberlo creado ya, inicializamos
+								// a 0 el contador de personas aquí también (en teoría sólo debería crear
+								// el array 1 vez, pero puede haber un usuario toca_huevos, que lo habrá
+								// siempre -nosotros mismo somos todos unos manazas-)
 				break;
 
 			case 2:
@@ -150,7 +225,8 @@ public class MainPersonas {
 						// necesito los datos de una persona --> hago un método que me los dé
 						Persona persona_nueva = obtenerPersona();
 						// la persona tiene que ir en el array, ¿pero dónde? --> en n_personas !!
-						array_personas[n_personas] = persona_nueva;
+						// array_personas[n_personas] = persona_nueva;
+						array_personas.add(persona_nueva);
 						// actualizamos el contador de personas,
 						n_personas = n_personas + 1;
 					} else {
@@ -162,48 +238,84 @@ public class MainPersonas {
 
 				break;
 			case 3:
+				System.out.println("\t Quiere insertar un alumno \n");
+				// lo primero es ver si el array está creado
+				if (array_personas != null) {
+					// lo segundo es ver si tengo hueco en el array. ello me empuja a ir llevando la
+					// cuenta de las personas que se han introduocido, para lo cual declaro un
+					// contador al inicio del main (n_personas)
+					if (n_personas < 5)// 5 podría ser una constante, luego lo mejoraremos.
+					{
+						// necesito los datos de una persona --> hago un método que me los dé
+						Alumno alumno_nuevo = obtenerAlumno();
+						// la persona tiene que ir en el array, ¿pero dónde? --> en n_personas !!
+						// array_personas[n_personas] = alumno_nuevo;
+						array_personas.add(alumno_nuevo);
+						// actualizamos el contador de personas,
+						n_personas = n_personas + 1;
+					} else {
+						System.out.println("\t No caben más personas en el array :S \n");
+					}
+				} else {
+					System.out.println("\t Debe primero crear el array - opcion 1 - \n");
+				}
+
+				break;
+			case 4:
 				System.out.println("\t Quiere mostar el array \n");
 				// simplemente hacemos un for desde 0 hasta n_personas
 				// primero, nos aseguramos que hay alguna persona que mostrar
 				if (n_personas > 0) {
-					//y recorremos en tal caso, el array desde cero hasta n_personas
-					for (int i = 0; i < n_personas; i++) {
+					// y recorremos en tal caso, el array desde cero hasta n_personas
+					for (int i = 0; i < array_personas.size(); i++) {
 
 						System.out.println("\tPERSONA " + i);
-						System.out.println("\t \t Nombre " + array_personas[i].getNombre());
-						System.out.println("\t \t Edad " + array_personas[i].getEdad() + "\n");//intro de separación par aque se vea más bonito
+						/*
+						 * System.out.println("\t \t Nombre " + array_personas[i].getNombre());
+						 * System.out.println("\t \t Edad " + array_personas[i].getEdad() +
+						 * "\n");//intro de separación par aque se vea más bonito
+						 * 
+						 */
+
+						// array_personas[i].mostrarPersona();
+						Persona persona_aux = array_personas.get(i);
+
+						persona_aux.mostrarPersona();
 					}
 				} else {
 					System.out.println("\t No hay personas que mostrar - introduzca primero - \n");
 				}
 				break;
-			case 4:
+			case 5:
 				System.out.println("\t Quiere mostrar la persona de más edad \n");
-				//antes de nada, vamos a ver si el array tiene algo donde buscar :)
+				// antes de nada, vamos a ver si el array tiene algo donde buscar :)
 				if (n_personas > 0) {
-					//ahora deberemos buscar la persona de más edad. Hay que recorrer el array
-					//para ello, vamos buscando la persona de mayor edad, que es justo lo que necesitamos 
-					Persona persona_mayor = array_personas[0];//empezamos tomando como mayor el primero y vamos comparando
-					//for es lo que pega, pues hay que pasar por todos sin excepción para determinar el menor
+					// ahora deberemos buscar la persona de más edad. Hay que recorrer el array
+					// para ello, vamos buscando la persona de mayor edad, que es justo lo que
+					// necesitamos
+					Persona persona_mayor = array_personas.get(0);// array_personas[0];//empezamos tomando como mayor el
+																	// primero y vamos comparando
+					// for es lo que pega, pues hay que pasar por todos sin excepción para
+					// determinar el menor
 					for (int i = 1; i < n_personas; i++) {
-						if (array_personas[i].getEdad()>persona_mayor.getEdad())//si la persona actual es mayor
+						if (array_personas.get(i).getEdad() > persona_mayor.getEdad())// si la persona actual es mayor
 						{
-							persona_mayor=array_personas[i];//me la guardo a la que es la nueva mayor!
+							persona_mayor = array_personas.get(i);// me la guardo a la que es la nueva mayor!
 						}
-						
-					}//al salir de bucle sé que la variable persona_mayor tiene a la persona de mayor edad del array
+
+					} // al salir de bucle sé que la variable persona_mayor tiene a la persona de
+						// mayor edad del array
 					System.out.println("\tPERSONA de MAS EDAD \n");
 					System.out.println("\t \t Nombre " + persona_mayor.getNombre());
-					System.out.println("\t \t Edad " + persona_mayor.getEdad() + "\n");//intro de separación par aque se vea más bonito
+					System.out.println("\t \t Edad " + persona_mayor.getEdad() + "\n");// intro de separación par aque
+																						// se vea más bonito
 
-					
 				} else {
 					System.out.println("\t No hay personas para buscar - introduzca primero - \n");
 				}
-				
 
 				break;
-			case 5:
+			case 6:
 				System.out.println("Quiere vacíar el array");
 				array_personas = null;
 				System.out.println("array vaciado");// es un vaciado lógico. volvemos a inicializarlo
@@ -211,62 +323,121 @@ public class MainPersonas {
 				n_personas = 0;
 
 				break;
-			case 6:
+			case 7:
 				System.out.println("Quiere borrar una persona por su nombre");
-				//antes de nada, vamos a ver si el array tiene algo donde buscar :)
+				// antes de nada, vamos a ver si el array tiene algo donde buscar :)
 				if (n_personas > 0) {
-					//ahora deberemos obtener el nombre de la persona
-					//para ello, hacemos un método aparte
+					// ahora deberemos obtener el nombre de la persona
+					// para ello, hacemos un método aparte
 					String nombre_buscado = pedirNombreABuscar();
-					//y ahora recorremos el array buscando ese nombre. Bien hasta que lo encontremos o lleguemos al final
-					//pero al menos 1 vez. lo que toca es do-while
+					// y ahora recorremos el array buscando ese nombre. Bien hasta que lo
+					// encontremos o lleguemos al final
+					// pero al menos 1 vez. lo que toca es do-while
 					boolean encontrado = false;
 					int posicion = 0;
-					Persona paux = null;//variable auxiliar para almacenar temporalmente la persona en curso
-					
+					Persona persona_actual = null;// variable auxiliar para almacenar temporalmente la persona en curso
+
 					do {
-						paux = array_personas[posicion];
-						//comparamos 2 String. OJO que esto es nuevoe E IMPORTANTE 
-						//Al ser dos objetos (no int, char o tipos simples) hay que comparar usando el método equals. SIEMPRE se hará así
-						if (paux.getNombre().equals(nombre_buscado))//equals devuevel true si son iguales
+						persona_actual = array_personas.get(posicion);
+						// comparamos 2 String. OJO que esto es nuevoe E IMPORTANTE
+						// Al ser dos objetos (no int, char o tipos simples) hay que comparar usando el
+						// método equals. SIEMPRE se hará así
+						if (persona_actual.getNombre().equals(nombre_buscado))// equals devuevel true si son iguales
 						{
-							encontrado=true;
-						} 
-						else {
+							encontrado = true;
+						} else {
 							posicion++;
 						}
-						
-						
-					} while ((!encontrado)&&(posicion<n_personas));
-					//ha podido concluir el bucle por alguna de las dos condiciones
-					//tenemos que discernir por cuál para determinar si se ha encontrado o no
-					if (encontrado)
-					{
-						//bien, debemos de quitar a esa persona y bajar el contador de n_personas
-						//la variable posición nos indica donde está la persona que queremos borrar
-						//así que vamos a correr las personas una posición hacia atrás desde la posición encontrada
-						//hasta el final y así "machacamos" el sitio del que queremos borrar
-						//esto mejor dibujarlo o depurarlo para terminar de entenderlo bien y poneros ejemplos 
-						
-						for (int i = posicion; i < (n_personas-1); i++) {
-							
-							array_personas[i] = array_personas[i+1];
-						}
-						n_personas--;
+
+					} while ((!encontrado) && (posicion < n_personas));
+
+					// ha podido concluir el bucle por alguna de las dos condiciones
+					// tenemos que discernir por cuál para determinar si se ha encontrado o no
+					if (encontrado) {
+						// bien, debemos de quitar a esa persona y bajar el contador de n_personas
+						// la variable posición nos indica donde está la persona que queremos borrar
+						// así que vamos a correr las personas una posición hacia atrás desde la
+						// posición encontrada
+						// hasta el final y así "machacamos" el sitio del que queremos borrar
+						// esto mejor dibujarlo o depurarlo para terminar de entenderlo bien y poneros
+						// ejemplos
+
+						array_personas.remove(posicion);
+//						for (int i = posicion; i < (n_personas-1); i++) {
+//							
+//							array_personas[i] = array_personas[i+1];
+//						}
+//						n_personas--;
 						System.out.println("Persona encontrada en la posicion " + posicion + " eliminada");
-						
+
 					} else {
 						System.out.println("La persona introducida no existe");
 					}
-					
-					
+
 				} else {
 					System.out.println("\t No hay nombres para buscar - introduzca primero - \n");
 				}
-				
 
 				break;
-			case 7:
+			case 8:
+				System.out.println("iNFORMAR NUM ALUMNOS");
+				// recorrer array personas
+				Persona persona_actual = null;
+				int total_alumnos = 0;
+				if (array_personas != null) {
+					for (int i = 0; i < array_personas.size(); i++) {
+						persona_actual = array_personas.get(i);
+						if (persona_actual instanceof Alumno) {
+							total_alumnos++;
+						}
+					}
+					System.out.println("Tenemos " + total_alumnos + " alumnos");
+				} else {
+					System.out.println("Tenemos 0 alumnos");
+				}
+
+				break;
+			case 9:
+				System.out.println("Quiere mostrar los alumnos");
+				// recorrer el array de persona y si es un alumno, mostrarlo
+				//int conta_alumnos = 0;
+				boolean hay_alumnos = false;
+				if (array_personas != null) {
+					for (Persona p : array_personas) {
+						// p, cada vez va a ser una persona nueva: FOR EACH
+						if (p instanceof Alumno) {
+							p.mostrarPersona();
+							//conta_alumnos++;
+							hay_alumnos = true;
+						}
+					}
+					
+				} 
+				if (!hay_alumnos) //hay almhnos = false
+					{
+					System.out.println("Tenemos 0 alumnos");
+				}
+
+				break;
+
+			case 10:
+				System.out.println("Quiere buscar");
+				//BUSCAR A UN ALUMNO Y DECIR EN QUE POSICIOEN EST�
+				//SI NO EST�, IMPRIMIMOS LA POSICI�N -1
+				Alumno alumno_buscado = pedirAlumnoABsucar();
+				int posicion = buscarAlumnoEnLista (alumno_buscado, array_personas);
+				if (posicion==-1)
+				{
+					System.out.println("El alumno no est� en la lista (-1)");
+				} else {
+					System.out.println("El alumno est� en la posici�n "+ posicion);
+				}
+				
+				
+				//billete comprarBillete (cliente, vuelo)
+
+				break;
+			case 11:
 				System.out.println("Quiere salir");
 
 				break;
